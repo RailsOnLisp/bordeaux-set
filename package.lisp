@@ -1,10 +1,13 @@
 
 (in-package :common-lisp)
 
-(defpackage :bordeaux-queue
+(defpackage :bordeaux-set
   (:use :bordeaux-threads :common-lisp)
+  (:shadow
+   #:set)
   (:export
-   #:queue
-   #:enqueue
-   #:dequeue
-   #:dequeue-all))
+   #:set
+   #:set-add
+   #:set-remove
+   #:set-member-p
+   #:set-each))
