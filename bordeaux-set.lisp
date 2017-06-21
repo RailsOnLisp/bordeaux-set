@@ -6,14 +6,14 @@
 
 (defclass set ()
   ((hash-table :initarg :hash-table
-	       :initform (make-hash-table)
-	       :reader set-hash-table
-	       :type hash-table)
+               :initform (make-hash-table)
+               :reader set-hash-table
+               :type hash-table)
    (size :initform 0
-	 :accessor set-size
-	 :type fixnum+)
+         :accessor set-size
+         :type fixnum+)
    (lock :initform (make-lock "set")
-	 :reader set-lock)))
+         :reader set-lock)))
 
 (defgeneric set-add (set item))
 (defgeneric set-remove (set item))
@@ -41,6 +41,6 @@
 (defmethod set-each ((fn function) (set set))
   (with-lock-held ((set-lock set))
     (maphash (lambda (key value)
-	       (declare (ignore value))
-	       (funcall fn key))
-	     (set-hash-table set))))
+               (declare (ignore value))
+               (funcall fn key))
+             (set-hash-table set))))
